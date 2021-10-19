@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from './interfaces';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class PostsService {
     return this.http.get<Post[]>(this.END_POINT);
   }
 
-  addPost(data: Post): Observable<string> {
-    return this.http.post<string>(this.END_POINT, data);
+  addPost(data: Post): Observable<any> {
+    return this.http.post(this.END_POINT, data);
   }
 }

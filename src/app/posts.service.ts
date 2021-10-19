@@ -1,36 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Post } from './interfaces';
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  constructor() {}
+  END_POINT = 'https://general-worker.ping-yao-shen.workers.dev';
+
+  constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    const mockData: Post[] = [
-      {
-        title: 'Post1',
-        author: 'Aiden',
-        date: '2018-09-01',
-        content: 'Hello World'
-      },
-      {
-        title: 'Post2',
-        author: 'Aiden',
-        date: '2021-10-18',
-        content:
-          'Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World'
-      },
-      {
-        title: 'Post3',
-        author: 'Aiden',
-        date: '2021-12-18',
-        content: 'Hello World'
-      }
-    ];
+    return this.http.get<Post[]>(this.END_POINT);
+  }
 
-    return of(mockData);
+  addPost(data: Post): Observable<string> {
+    return this.http.post<string>(this.END_POINT, data);
   }
 }

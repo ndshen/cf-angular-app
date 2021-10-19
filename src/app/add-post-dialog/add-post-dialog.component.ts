@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Post } from '../interfaces';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-add-post-dialog',
@@ -16,6 +18,7 @@ export class AddPostDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddPostDialogComponent>,
+    private postService: PostsService,
     private fb: FormBuilder
   ) {}
 
@@ -24,7 +27,8 @@ export class AddPostDialogComponent {
   }
 
   onSubmitClick(): void {
-    console.log('hi');
-    this.dialogRef.close(true);
+    this.postService.addPost(this.postForm.value).subscribe(() => {
+      this.dialogRef.close(true);
+    });
   }
 }

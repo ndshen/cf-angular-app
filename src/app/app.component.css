@@ -1,3 +1,9 @@
 .add-btn {
-  background-color: #44dfb3 !important;
+  background-color: #739e82 !important;
+  width: 150px !important;
+  min-width: 30%;
+  font-weight: 600;
+  position: fixed;
+  height: 48px;
+  z-index: 500;
 }

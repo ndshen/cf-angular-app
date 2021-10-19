@@ -4,10 +4,16 @@
     <mat-form-field>
       <mat-label>Your name</mat-label>
       <input matInput formControlName="author" />
+      <mat-error *ngIf="postForm.controls['author'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Post title</mat-label>
       <input matInput formControlName="title" />
+      <mat-error *ngIf="postForm.controls['title'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Say something</mat-label>
@@ -18,6 +24,9 @@
         placeholder="Ex. Cloudflare is great!"
         formControlName="content"
       ></textarea>
+      <mat-error *ngIf="postForm.controls['content'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
     </mat-form-field>
   </form>
 </div>

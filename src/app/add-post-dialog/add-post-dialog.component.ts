@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Post } from '../interfaces';
 import { PostsService } from '../posts.service';
 
 @Component({
@@ -11,9 +10,9 @@ import { PostsService } from '../posts.service';
 })
 export class AddPostDialogComponent {
   postForm = this.fb.group({
-    title: [''],
-    author: [''],
-    content: ['']
+    title: ['', Validators.required],
+    author: ['', Validators.required],
+    content: ['', Validators.required]
   });
 
   constructor(
@@ -27,8 +26,10 @@ export class AddPostDialogComponent {
   }
 
   onSubmitClick(): void {
-    this.postService.addPost(this.postForm.value).subscribe(() => {
-      this.dialogRef.close(true);
-    });
+    if (this.postForm.status === 'VALID') {
+      this.postService.addPost(this.postForm.value).subscribe(() => {
+        this.dialogRef.close(true);
+      });
+    }
   }
 }

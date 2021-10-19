@@ -1,0 +1,7 @@
+{
+  "/": {
+    "target": "https://general-worker.ping-yao-shen.workers.dev",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

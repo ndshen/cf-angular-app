@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Want to say something?</h1>
+<div mat-dialog-content>
+  <form [formGroup]="postForm">
+    <mat-form-field>
+      <mat-label>Your name</mat-label>
+      <input matInput formControlName="author" />
+      <mat-error *ngIf="postForm.controls['author'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Post title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error *ngIf="postForm.controls['title'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Say something</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        placeholder="Ex. Cloudflare is great!"
+        formControlName="content"
+      ></textarea>
+      <mat-error *ngIf="postForm.controls['content'].hasError('required')">
+        All the fields are <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Never Mind</button>
+  <button mat-button (click)="onSubmitClick()">Add</button>
+</div>
